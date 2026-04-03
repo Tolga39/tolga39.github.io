@@ -4,15 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tolga | SAP Consultant Portfolio</title>
-
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f5f7fb;
       color: #111827;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     .container {
@@ -24,208 +34,555 @@
     .navbar {
       display: flex;
       justify-content: flex-end;
-      margin-bottom: 20px;
+      align-items: center;
+      padding: 4px 0 22px 0;
     }
 
     .nav-links {
       display: flex;
-      gap: 25px;
+      gap: 28px;
       font-size: 14px;
-      color: #6b7280;
+      color: #4b5563;
+    }
+
+    .nav-links a:hover {
+      color: #111827;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 20px;
-      margin-bottom: 20px;
+      grid-template-columns: 1.15fr 0.78fr;
+      gap: 22px;
+      margin-bottom: 22px;
+      align-items: stretch;
     }
 
-    .card {
-      background: white;
-      border-radius: 20px;
-      padding: 35px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    .hero-left,
+    .hero-right,
+    .section-card,
+    .project-card,
+    .footer-card {
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+    }
+
+    .hero-left {
+      padding: 42px;
+      min-height: 430px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .hero-name {
       font-size: 14px;
+      font-weight: 500;
       color: #6b7280;
       margin-bottom: 8px;
     }
 
     h1 {
-      font-size: 32px;
-      margin: 0 0 15px 0;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.7px;
+      margin: 0 0 18px 0;
+      max-width: 520px;
     }
 
     .subtitle {
+      margin: 0 0 26px 0;
+      font-size: 17px;
+      line-height: 1.75;
       color: #4b5563;
-      line-height: 1.6;
-      margin-bottom: 20px;
+      max-width: 610px;
     }
 
-    .btn {
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-weight: bold;
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 12px;
       font-size: 14px;
-      border: none;
-      cursor: pointer;
+      font-weight: 700;
+      transition: 0.2s ease;
     }
 
-    .btn-dark {
+    .btn-primary {
       background: #111827;
-      color: white;
+      color: #ffffff;
     }
 
-    .btn-light {
-      background: white;
-      border: 1px solid #ccc;
+    .btn-primary:hover {
+      background: #1f2937;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #111827;
+      border: 1px solid #d1d5db;
+    }
+
+    .btn-secondary:hover {
+      border-color: #9ca3af;
+    }
+
+    .hero-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .highlight-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .highlight-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 10px;
+    }
+
+    .highlight-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #374151;
     }
 
     .hero-right {
-      position: relative;
-      overflow: hidden;
-      padding: 0;
+      padding: 18px;
+      min-height: 430px;
+      background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .hero-right img {
+    .photo-card {
+      width: 100%;
+      height: 100%;
+      min-height: 390px;
+      border-radius: 20px;
+      border: 1px solid #e5e7eb;
+      background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 55%, #f8fafc 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-top-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #e5e7eb;
+      color: #111827;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .profile-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 20px;
+      object-position: center top;
+      display: block;
+      transform: scale(0.92);
+      transform-origin: center center;
     }
 
-    .badge {
+    .floating-badge {
       position: absolute;
-      bottom: 15px;
-      left: 15px;
-      background: #111827;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-size: 12px;
+      bottom: 18px;
+      left: 18px;
+      background: rgba(17, 24, 39, 0.92);
+      color: #ffffff;
+      padding: 11px 15px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 10px 24px rgba(17, 24, 39, 0.18);
+      z-index: 2;
     }
 
-    .section {
-      margin-bottom: 20px;
+    .content-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .section-card {
+      padding: 30px;
+    }
+
+    .section-card h2 {
+      margin: 0 0 16px 0;
+      font-size: 24px;
+      letter-spacing: -0.4px;
+    }
+
+    .section-card p {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.8;
+      font-size: 16px;
+      max-width: 900px;
     }
 
     .skills {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 10px;
+      margin-top: 18px;
     }
 
     .skill {
-      background: #e0ecff;
-      padding: 6px 12px;
-      border-radius: 20px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #dbeafe;
+      padding: 10px 14px;
+      border-radius: 999px;
       font-size: 13px;
+      font-weight: 700;
     }
 
-    .projects {
+    .projects-section {
+      margin-bottom: 22px;
+    }
+
+    .projects-header {
+      margin-bottom: 16px;
+    }
+
+    .projects-header h2 {
+      margin: 0 0 10px 0;
+      font-size: 30px;
+      letter-spacing: -0.7px;
+    }
+
+    .projects-header p {
+      margin: 0;
+      color: #6b7280;
+      line-height: 1.7;
+      font-size: 16px;
+      max-width: 860px;
+    }
+
+    .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
+      gap: 18px;
     }
 
-    .project {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    .project-card {
+      padding: 24px;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
     }
 
-    @media (max-width: 900px) {
-      .hero {
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: #e5e7eb;
+      box-shadow: 0 16px 34px rgba(17, 24, 39, 0.08);
+    }
+
+    .project-tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      color: #2563eb;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .project-card h3 {
+      margin: 0 0 12px 0;
+      font-size: 20px;
+      line-height: 1.3;
+      letter-spacing: -0.3px;
+    }
+
+    .project-card p {
+      margin: 0 0 16px 0;
+      color: #4b5563;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .project-link {
+      color: #111827;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .project-link:hover {
+      color: #2563eb;
+    }
+
+    .footer-card {
+      padding: 26px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .footer-card h2 {
+      margin: 0 0 8px 0;
+      font-size: 22px;
+    }
+
+    .footer-card p {
+      margin: 0;
+      color: #6b7280;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      padding: 11px 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #111827;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover {
+      border-color: #9ca3af;
+    }
+
+    @media (max-width: 1024px) {
+      .hero,
+      .projects-grid,
+      .hero-highlights {
         grid-template-columns: 1fr;
       }
 
-      .projects {
-        grid-template-columns: 1fr;
+      .hero-left,
+      .hero-right {
+        min-height: auto;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .footer-card,
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 16px;
+      }
+
+      .hero-left,
+      .section-card,
+      .project-card,
+      .footer-card {
+        padding: 22px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
       }
     }
   </style>
 </head>
-
 <body>
   <div class="container">
-
     <div class="navbar">
       <div class="nav-links">
-        <div>About</div>
-        <div>Skills</div>
-        <div>Projects</div>
-        <div>Contact</div>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
 
-    <div class="hero">
-      <div class="card">
+    <section class="hero">
+      <div class="hero-left">
         <div class="hero-name">Tolga Aytekin</div>
 
         <h1>SAP Technical Consultant</h1>
 
         <p class="subtitle">
-          Ich arbeite im SAP-Umfeld mit Schwerpunkt auf klassischer ABAP-Entwicklung
-          und praktischer Datenmigration.
+          Ich arbeite im SAP-Umfeld mit Schwerpunkt auf klassischer ABAP-Entwicklung,
+          praktischer Datenmigration und strukturierten technischen Lösungsansätzen.
+          Auf dieser Seite dokumentiere ich nach und nach eigene Projekte,
+          technische Ansätze und umgesetzte Lösungswege.
         </p>
 
-        <button class="btn btn-dark">Projekte ansehen</button>
-        <button class="btn btn-light">Kontakt</button>
+        <div class="hero-buttons">
+          <a class="btn-primary" href="#projects">Projekte ansehen</a>
+          <a class="btn-secondary" href="#contact">Kontakt</a>
+        </div>
+
+        <div class="hero-highlights">
+          <div class="highlight-card">
+            <div class="highlight-title">ABAP</div>
+            <div class="highlight-text">
+              Klassische Entwicklung mit Fokus auf saubere technische Umsetzung.
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-title">Migration</div>
+            <div class="highlight-text">
+              Erfahrung mit LTMC, LTMOM, Staging-Tabellen und ETL-Prozessen.
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-title">Praxis</div>
+            <div class="highlight-text">
+              Kombination aus Entwicklungsnähe und Migrationsverständnis im SAP-Umfeld.
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="card hero-right">
-        <!-- HIER IST DIE KORREKTUR -->
-        <img src="profilbild.jpg" alt="Tolga Aytekin" />
-
-        <div class="badge">SAP | ABAP | Migration</div>
+      <div class="hero-right">
+        <div class="photo-card">
+          <div class="photo-top-badge">Profilbild</div>
+          <img src="profilbild.jpg" alt="Tolga Aytekin" class="profile-image" />
+          <div class="floating-badge">SAP | ABAP | Migration</div>
+        </div>
       </div>
+    </section>
+
+    <div class="content-stack">
+      <section class="section-card" id="about">
+        <h2>Über mich</h2>
+        <p>
+          Ich arbeite aktuell als SAP Berater bei Accenture und bringe rund drei Jahre
+          Berufserfahrung mit. Mein Hintergrund liegt vor allem in der klassischen
+          ABAP-Entwicklung mit Methoden wie BAPIs, FUBAs und ATC Checks. Zusätzlich
+          arbeite ich seit mehreren Monaten aktiv im Bereich SAP Datenmigration.
+        </p>
+      </section>
+
+      <section class="section-card" id="skills">
+        <h2>Skills</h2>
+        <p>
+          Mein Profil verbindet technische SAP-Entwicklung mit praktischer
+          Migrationserfahrung. Genau diese Kombination möchte ich auf dieser Seite
+          anhand von Projekten, Lösungsansätzen und Dokumentationen sichtbar machen.
+        </p>
+
+        <div class="skills">
+          <span class="skill">ABAP</span>
+          <span class="skill">BAPIs / FUBAs</span>
+          <span class="skill">ATC Checks</span>
+          <span class="skill">LTMC</span>
+          <span class="skill">LTMOM</span>
+          <span class="skill">Staging Tables</span>
+          <span class="skill">Alteryx</span>
+          <span class="skill">Data Migration</span>
+        </div>
+      </section>
     </div>
 
-    <div class="card section">
-      <h2>Über mich</h2>
-      <p>
-        SAP Berater mit Fokus auf ABAP und Datenmigration.
-      </p>
-    </div>
-
-    <div class="card section">
-      <h2>Skills</h2>
-      <div class="skills">
-        <div class="skill">ABAP</div>
-        <div class="skill">BAPIs</div>
-        <div class="skill">ATC</div>
-        <div class="skill">LTMC</div>
-        <div class="skill">LTMOM</div>
-        <div class="skill">Alteryx</div>
+    <section class="projects-section" id="projects">
+      <div class="projects-header">
+        <h2>Projekte</h2>
+        <p>
+          Hier werde ich schrittweise eigene SAP-Projekte veröffentlichen, um meine
+          Arbeitsweise, technische Umsetzung und mein Verständnis für ABAP und
+          Datenmigration greifbar zu machen.
+        </p>
       </div>
-    </div>
 
-    <div class="section">
-      <h2>Projekte</h2>
-
-      <div class="projects">
-        <div class="project">
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-tag">Projekt 01</div>
           <h3>Migration End-to-End</h3>
-          <p>Projekt folgt...</p>
+          <p>
+            Geplantes Showcase-Projekt für einen vollständigen Migrationsablauf
+            mit ETL, Staging und technischer Verarbeitung.
+          </p>
+          <a class="project-link" href="#">Demnächst verfügbar →</a>
         </div>
 
-        <div class="project">
-          <h3>ABAP Tool</h3>
-          <p>Projekt folgt...</p>
+        <div class="project-card">
+          <div class="project-tag">Projekt 02</div>
+          <h3>ABAP Utility Tool</h3>
+          <p>
+            Geplantes kleines ABAP-Projekt mit sauberem Aufbau,
+            nachvollziehbarer Logik und technischer Dokumentation.
+          </p>
+          <a class="project-link" href="#">Demnächst verfügbar →</a>
         </div>
 
-        <div class="project">
-          <h3>Data Validation</h3>
-          <p>Projekt folgt...</p>
+        <div class="project-card">
+          <div class="project-tag">Projekt 03</div>
+          <h3>Data Validation Case</h3>
+          <p>
+            Beispiel für Prüf- und Validierungslogik im Kontext von Datenmigration
+            und vorbereitender Datenqualität.
+          </p>
+          <a class="project-link" href="#">Demnächst verfügbar →</a>
         </div>
       </div>
-    </div>
+    </section>
 
+    <section class="footer-card" id="contact">
+      <div>
+        <h2>Kontakt & Links</h2>
+        <p>
+          Im nächsten Schritt ergänzen wir hier dein LinkedIn, GitHub und auf Wunsch
+          auch deinen CV.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">CV</a>
+      </div>
+    </section>
   </div>
 </body>
 </html>
